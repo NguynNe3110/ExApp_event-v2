@@ -104,7 +104,7 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = R.mipmap.ic_launcher),
+                painter = painterResource(id = R.drawable.tickii_app_logo),
                 contentDescription = "Logo",
                 modifier = Modifier.size(90.dp)
             )
