@@ -27,6 +27,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var cartRepo: CartRepository
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -67,7 +67,7 @@ fun EventDetailScreen(
     var isBuying by remember { mutableStateOf(false) }
     var selectedTicketType by remember { mutableStateOf<CategoryTicket?>(event.ticketTypes.firstOrNull()) }
 
-    
+
     Box(
         modifier = Modifier
             .fillMaxSize()
