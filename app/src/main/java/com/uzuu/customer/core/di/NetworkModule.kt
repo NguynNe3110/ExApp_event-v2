@@ -38,10 +38,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAuthInterceptor(): AuthInterceptor = AuthInterceptor()
-
-    @Provides
-    @Singleton
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
         authInterceptor: AuthInterceptor
@@ -65,6 +61,12 @@ object NetworkModule {
             .build()
     }
 
+
+    @Provides
+    @Singleton
+    fun provideAuthInterceptor(): AuthInterceptor = AuthInterceptor()
+
+    // các class
     @Provides
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)

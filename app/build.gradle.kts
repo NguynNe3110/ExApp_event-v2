@@ -23,7 +23,12 @@ fun getEnvProperty(key: String, defaultValue: String = ""): String {
     if (!systemEnv.isNullOrBlank()) {
         return systemEnv.trim().removeSurrounding("\"").removeSurrounding("'")
     }
-    return defaultValue
+    // Nếu có truyền giá trị mặc định thì trả về giá trị mặc định
+    if (defaultValue.isNotBlank()) {
+        return defaultValue
+    }
+    // Nếu không có cả trong .env, System Environment lẫn defaultValue -> Dừng Build và báo lỗi
+    throw GradleException("\n❌ LỖI BUILD: Không tìm thấy biến môi trường '$key' trong file .env hoặc System Environment!\n")
 }
 
 android {
@@ -39,6 +44,26 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        // Lấy BASE_URL bắt buộc (không truyền defaultValue), nếu thiếu .env sẽ throw LỖI BUILD ngay lập tức
+        val baseUrl = getEnvProperty("BASE_URL")
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+    }
+    // ... các phần còn lại giữ nguyên
+}
+android {
+    namespace = "com.uzuu.customer"
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = "com.uzuu.customer"
+        minSdk = 24
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //tạo mới biến khi cần
         val baseUrl = getEnvProperty("BASE_URL", "https://be-event-mng-v3.onrender.com/")
         buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
