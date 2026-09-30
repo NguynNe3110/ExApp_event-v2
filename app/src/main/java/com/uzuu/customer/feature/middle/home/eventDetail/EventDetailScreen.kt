@@ -128,6 +128,7 @@ fun EventDetailScreen(
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
+
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Info Rows
