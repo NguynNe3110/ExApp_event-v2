@@ -3,6 +3,7 @@ package com.uzuu.customer.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val BluePrimary950 = Color(0xFF082567)
+
 val BluePrimary900 = Color(0xFF0D47A1)
 val BluePrimary800 = Color(0xFF1565C0)
 val BluePrimary700 = Color(0xFF1976D2)
